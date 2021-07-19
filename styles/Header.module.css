@@ -1,0 +1,20 @@
+.container {
+  padding: 10px;
+}
+
+.link > a {
+  margin: 0 20px;
+  font-weight: bold;
+  color: #6a7b98 !important;
+}
+
+.danger {
+  margin: 0 20px;
+  padding: 10px 30px !important;
+  word-spacing: 3px;
+}
+
+.home {
+  color: var(--red-color) !important;
+  font-weight: bold;
+}

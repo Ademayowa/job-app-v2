@@ -1,0 +1,29 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@200;300;400&display=swap');
+
+:root {
+  --white-color: #fff;
+  --red-color: #fc5e53;
+  --main-color: #353a58;
+}
+
+body {
+  font-family: 'Nunito Sans', sans-serif !important;
+}
+
+/* Buttons */
+.btn-danger {
+  background-color: var(--red-color) !important;
+  border: none !important;
+}
+
+a {
+  text-decoration: none;
+}
+
+ul {
+  list-style: none;
+}
+
+.form-control {
+  height: 54px !important;
+}
