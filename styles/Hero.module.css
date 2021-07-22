@@ -1,28 +1,17 @@
 .hero {
   background-color: var(--main-color);
-  padding: 100px 0;
+  height: 100vh;
 }
 
-.hero::before {
-  content: '';
-  position: absolute;
-  top: 10%;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(#333647, #f97b58);
-  clip-path: circle(25% at center 50%);
-}
-
-/* This should be for large screens only */
-.lg {
+.info {
   padding-left: 0 !important;
+  padding-top: 130px;
 }
 
 .title {
   color: var(--white-color);
   font-size: 40px;
-  font-weight: bold;
+  font-weight: 600;
   text-transform: capitalize;
   line-height: 1.4;
 }
@@ -31,4 +20,30 @@
   color: var(--white-color);
   font-size: 18px;
   margin-top: 20px;
+  font-weight: 300;
+}
+
+.control,
+.text {
+  border: none !important;
+  background-color: #e9ecef;
+}
+
+.search {
+  color: var(--red-color);
+  font-size: 26px;
+}
+
+.color {
+  font-size: 26px;
+}
+
+@media (min-width: 992px) {
+  .image {
+    position: absolute;
+    top: 0;
+    right: 2%;
+    z-index: 100;
+    margin-top: 50px !important;
+  }
 }

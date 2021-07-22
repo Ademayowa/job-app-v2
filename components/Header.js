@@ -3,7 +3,7 @@ import styles from '@/styles/Header.module.css';
 
 export default function Header() {
   return (
-    <Navbar collapseOnSelect expand='md' bg='light' variant='light'>
+    <Navbar collapseOnSelect expand='md'>
       <Container className={styles.container}>
         <Navbar.Brand href='#home' className={styles.home}>
           Find Jobs
