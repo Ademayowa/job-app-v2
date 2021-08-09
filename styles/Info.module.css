@@ -1,0 +1,8 @@
+.info {
+  margin: 100px 0;
+}
+
+.danger {
+  padding: 10px 30px !important;
+  word-spacing: 3px;
+}

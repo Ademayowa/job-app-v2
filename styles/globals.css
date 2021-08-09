@@ -22,8 +22,20 @@ body {
   border: none !important;
 }
 
+.text-danger {
+  color: var(--red-color) !important;
+}
+
+.text-primary {
+  color: var(--main-color) !important;
+}
+
 a {
   text-decoration: none;
+}
+
+p {
+  line-height: 1.8;
 }
 
 ul {
