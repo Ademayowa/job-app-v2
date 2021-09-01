@@ -1,0 +1,24 @@
+.cover {
+  display: flex;
+  justify-content: space-between;
+  flex: 1;
+  padding: 15px 0;
+}
+
+.bot {
+  border-radius: 5px;
+  /* border: 5px solid red; */
+  /* margin-top: 20px; */
+}
+
+@media (max-width: 576px) {
+  .cover {
+    display: flex;
+    flex-direction: column !important;
+    text-align: center;
+  }
+
+  .test {
+    text-align: center !important;
+  }
+}

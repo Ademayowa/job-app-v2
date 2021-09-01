@@ -1,6 +1,6 @@
 .hero {
   background-color: var(--main-color);
-  height: 100vh;
+  padding-bottom: 100px;
 }
 
 .info {
@@ -45,5 +45,11 @@
     right: 2%;
     z-index: 100;
     margin-top: 50px !important;
+  }
+}
+
+@media (max-width: 992px) {
+  .hero {
+    margin-bottom: -350px !important;
   }
 }
