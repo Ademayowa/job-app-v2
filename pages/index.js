@@ -1,4 +1,3 @@
-import Header from '@/components/Header';
 import Job from '@/components/Job';
 import Layout from '@/components/Layout';
 import Search from '@/components/search/Search';
@@ -12,7 +11,6 @@ import styles from '@/styles/Featured.module.css';
 export default function HomePage({ jobs }) {
   return (
     <Layout>
-      <Header />
       <Hero />
 
       {jobs.length === 0 && (

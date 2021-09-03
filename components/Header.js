@@ -5,7 +5,7 @@ export default function Header() {
   return (
     <Navbar collapseOnSelect expand='md' className='shadow-sm bg-white'>
       <Container className={styles.container}>
-        <Navbar.Brand href='#home' className={styles.home}>
+        <Navbar.Brand href='/' className={styles.home}>
           Find Jobs
         </Navbar.Brand>
         <Navbar.Toggle aria-controls='responsive-navbar-nav' />

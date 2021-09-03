@@ -1,6 +1,6 @@
 import Head from 'next/head';
 import { Container } from 'react-bootstrap';
-import Hero from 'sections/Hero';
+import Header from './Header';
 
 export default function Layout({ title, description, keywords, children }) {
   return (
@@ -11,6 +11,7 @@ export default function Layout({ title, description, keywords, children }) {
         <meta name='keywords' content='keywords' />
       </Head>
 
+      <Header />
       {children}
     </div>
   );

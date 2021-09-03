@@ -2,6 +2,7 @@
   "jobs": [
     {
       "id": "1",
+      "company": "Jelurida DLT",
       "role": "Front end developer",
       "slug": "front-end-developer",
       "location": "Berlin, Germany",
@@ -14,6 +15,7 @@
     },
     {
       "id": "2",
+      "company": "BuyCoins Africa",
       "role": "Back end developer",
       "slug": "back-end-developer",
       "location": "Toronto, Canada",
@@ -26,6 +28,7 @@
     },
     {
       "id": "3",
+      "company": "Paystack",
       "role": "Designer",
       "slug": "figma-designer",
       "location": "Lagos, Nigeria",
@@ -38,6 +41,7 @@
     },
     {
       "id": "4",
+      "company": "Netflix",
       "role": "DevOps developer",
       "slug": "devops-developer",
       "location": "Toronto, Canada",
@@ -50,6 +54,7 @@
     },
     {
       "id": "5",
+      "company": "Microsoft",
       "role": "Project Manager",
       "slug": "project-manager",
       "location": "Sanfransisco, USA",
@@ -62,6 +67,7 @@
     },
     {
       "id": "6",
+      "company": "Amazon",
       "role": "Back end developer",
       "slug": "back-end-developer",
       "location": "Toronto, Canada",
