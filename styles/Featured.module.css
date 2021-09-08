@@ -6,8 +6,8 @@
 
 .image {
   position: absolute;
-  top: -15%;
-  left: 8%;
+  top: -10%;
+  left: 6%;
 }
 
 .title {
@@ -23,7 +23,7 @@
   font-weight: 700;
   line-height: 20px;
   color: var(--main-color);
-  margin-top: 15px;
+  margin-top: 20px;
 }
 
 .danger {

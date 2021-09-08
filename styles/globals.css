@@ -14,10 +14,18 @@ body {
 /* Buttons */
 .btn {
   border-radius: 5px !important;
+  vertical-align: unset !important;
 }
+
 .btn-danger {
   background-color: var(--red-color) !important;
   border: none !important;
+}
+
+.btn-primary {
+  background-color: var(--red-color) !important;
+  border: none !important;
+  padding: 10px 30px !important;
 }
 
 .text-danger {

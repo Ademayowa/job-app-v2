@@ -5,21 +5,22 @@ import Image from 'next/image';
 import JobDetails from '@/components/JobDetails';
 
 export default function JobPage({ jb }) {
-  const { role, company } = jb;
+  const { role, company, image } = jb;
 
   return (
     <Layout>
       <div className='p-4 mx-5'>
         <div className='wrapper bg-white d-flex mt-4 p-5 shadow-sm border'>
-          <div className='logo'>
-            {/* Use ternary to output image later... */}
-            <Image
-              src={'/images/logo.png'}
-              width={60}
-              height={60}
-              objectFit={'contain'}
-            />
-          </div>
+          {jb.image && (
+            <div className='logo'>
+              <Image
+                src={image.url}
+                width={40}
+                height={40}
+                objectFit={'contain'}
+              />
+            </div>
+          )}
 
           <div className='company ms-5'>
             <h3>{company}</h3>
@@ -32,14 +33,14 @@ export default function JobPage({ jb }) {
           </div>
         </div>
 
-        {/* JobDetails component */}
         <JobDetails />
       </div>
     </Layout>
   );
 }
+
 export async function getServerSideProps({ query: { slug } }) {
-  const res = await fetch(`${API_URL}/api/jobs/${slug}`);
+  const res = await fetch(`${API_URL}/jobs?slug=${slug}`);
   const jobs = await res.json();
 
   return {
