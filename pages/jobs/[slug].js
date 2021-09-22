@@ -5,7 +5,8 @@ import Image from 'next/image';
 import styles from '@/styles/JobDetails.module.css';
 
 export default function JobPage({ jb }) {
-  const { role, company, image, description, requirements, apply } = jb;
+  const { role, company, image, description, requirements, apply, testings } =
+    jb;
 
   return (
     <Layout>
@@ -60,6 +61,17 @@ export default function JobPage({ jb }) {
             <div className='apply px-4 py-4 text-secondary'>
               <h4 className='fs-5 fw-bold text-dark'>How to apply</h4>
               <p className='mt-4'>{apply}</p>
+            </div>
+
+            <div className='apply px-4 py-4 text-secondary'>
+              <h4 className='fs-5 fw-bold text-dark'>Responsibilities</h4>
+              {testings.map((duty, index) => {
+                return (
+                  <ul key={index}>
+                    <li>{duty}</li>
+                  </ul>
+                );
+              })}
             </div>
           </div>
         </div>

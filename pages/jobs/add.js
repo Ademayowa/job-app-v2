@@ -1,3 +1,5 @@
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import { useState } from 'react';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
@@ -12,14 +14,38 @@ export default function AddJobPage() {
     date: '',
     time: '',
     description: '',
+    testings: '',
   });
 
   const router = useRouter();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    console.log(values);
+    // Validation: checks if fields are empty or not
+    const hasEmptyFields = Object.values(values).some(
+      (element) => element === ''
+    );
+
+    if (hasEmptyFields) {
+      toast.error('Please fill in all fields');
+    }
+
+    // Make reuqest to backend if all fields are filled
+    const res = await fetch(`${API_URL}/jobs`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(values),
+    });
+
+    if (!res.ok) {
+      toast.error('Something went wrong');
+    } else {
+      const jb = await res.json();
+      router.push(`/jobs/${jb.slug}`);
+    }
   };
 
   const handleInputChange = (e) => {
@@ -32,6 +58,7 @@ export default function AddJobPage() {
       <div className='container'>
         <Link href='/jobs'>Go Back</Link>
         <h2 className='mt-4'>Add Jobs</h2>
+        <ToastContainer />
 
         <form onSubmit={handleSubmit} className='row g-3 mt-5 mb-5'>
           <div className='col-md-6'>
@@ -86,6 +113,20 @@ export default function AddJobPage() {
               id='location'
               name='location'
               value={values.location}
+              onChange={handleInputChange}
+            />
+          </div>
+
+          <div className='col-md-6'>
+            <label htmlFor='location' className='form-label'>
+              Testings
+            </label>
+            <input
+              type='text'
+              className='form-control'
+              id='testings'
+              name='testings'
+              value={values.testings}
               onChange={handleInputChange}
             />
           </div>

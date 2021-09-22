@@ -9,9 +9,9 @@ export default function FeaturedJobs({ job }) {
   return (
     <Col lg={4}>
       <Card className='py-2 px-2 mt-5 mb-lg-5'>
-        <div className={styles.image}>
+        {/* <div className={styles.image}>
           <Image src={image.url} width={50} height={50} objectFit={'contain'} />
-        </div>
+        </div> */}
 
         <Card.Body>
           <Card.Title className={styles.title}>
