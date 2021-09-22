@@ -23,6 +23,8 @@ export default function Header() {
             <Button variant='danger' className={styles.danger}>
               Post Job
             </Button>
+
+            <Nav.Link href='/jobs/add'>Add Job</Nav.Link>
           </Nav>
         </Navbar.Collapse>
       </Container>
