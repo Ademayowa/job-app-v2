@@ -2,10 +2,10 @@ import Layout from '@/components/Layout';
 import { API_URL } from '@/config/index';
 import Link from 'next/link';
 import Image from 'next/image';
-import JobDetails from '@/components/JobDetails';
+import styles from '@/styles/JobDetails.module.css';
 
 export default function JobPage({ jb }) {
-  const { role, company, image } = jb;
+  const { role, company, image, description, requirements, apply } = jb;
 
   return (
     <Layout>
@@ -33,7 +33,36 @@ export default function JobPage({ jb }) {
           </div>
         </div>
 
-        <JobDetails />
+        <div className='wrapper mt-5'>
+          <div className={styles.background}>
+            <div className='headings px-4 py-4'>
+              <span className='text-secondary'>1w ago . Part Time</span>
+              <h4 className='fs-5 fw-bold mt-2'>Front end Developer</h4>
+
+              <div className={styles.apply}>
+                <Link href='#'>
+                  <a className='btn btn-danger'>Apply Now</a>
+                </Link>
+              </div>
+              <p className={styles.location}>Location: Toronto, Canada</p>
+            </div>
+
+            <div className='about px-4 pt-4 text-secondary'>
+              <h4 className='fs-5 fw-bold text-dark'>Description</h4>
+              <p>{description}</p>
+            </div>
+
+            <div className='about px-4 py-4 text-secondary'>
+              <h4 className='fs-5 fw-bold text-dark'>Requirements</h4>
+              <p className='mt-4'>{requirements}</p>
+            </div>
+
+            <div className='apply px-4 py-4 text-secondary'>
+              <h4 className='fs-5 fw-bold text-dark'>How to apply</h4>
+              <p className='mt-4'>{apply}</p>
+            </div>
+          </div>
+        </div>
       </div>
     </Layout>
   );

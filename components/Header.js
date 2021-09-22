@@ -1,5 +1,6 @@
 import { Navbar, Container, Nav, Button } from 'react-bootstrap';
 import styles from '@/styles/Header.module.css';
+import Search from './search';
 
 export default function Header() {
   return (
@@ -11,6 +12,8 @@ export default function Header() {
         <Navbar.Toggle aria-controls='responsive-navbar-nav' />
         <Navbar.Collapse id='responsive-navbar-nav'>
           <Nav className='me-auto'></Nav>
+
+          <Search />
 
           <Nav className={styles.link}>
             <Nav.Link href='#deets'>Home</Nav.Link>

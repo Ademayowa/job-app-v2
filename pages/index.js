@@ -11,7 +11,7 @@ import styles from '@/styles/Featured.module.css';
 export default function HomePage({ jobs }) {
   return (
     <Layout>
-      <Hero />
+      {/* <Hero /> */}
 
       {jobs.length === 0 && (
         <h3 className='text-center mt-5 mb-5'>

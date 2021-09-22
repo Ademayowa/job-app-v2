@@ -4,7 +4,7 @@ import styles from '@/styles/JobDetails.module.css';
 export default function JobDetails() {
   return (
     <div className='wrapper mt-5'>
-      <div className='background bg-white shadow-sm'>
+      <div className={styles.background}>
         <div className='headings px-4 py-4'>
           <span className='text-secondary'>1w ago . Part Time</span>
           <h4 className='fs-5 fw-bold mt-2'>Front end Developer</h4>
@@ -17,7 +17,8 @@ export default function JobDetails() {
           <p className={styles.location}>Location: Toronto, Canada</p>
         </div>
 
-        <div className='about px-4 py-4 text-secondary'>
+        <div className='about px-4 pt-4 text-secondary'>
+          <h4 className='fs-5 fw-bold text-dark'>Description</h4>
           <p>
             Lorem, ipsum dolor sit amet consectetur adipisicing elit. Alias
             autem ipsam, beatae molestias quidem mollitia, incidunt

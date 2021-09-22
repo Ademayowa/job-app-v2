@@ -1,18 +1,24 @@
+import { useRouter } from 'next/router';
+import Link from 'next/link';
+import qs from 'qs';
 import Job from '@/components/Job';
 import Layout from '@/components/Layout';
 import Search from '@/components/search/Search';
 import FeaturedJobs from '@/components/FeaturedJobs';
-import Hero from 'sections/Hero';
 import Info from 'sections/Info';
 import { API_URL } from '@/config/index';
 import { Container, Row } from 'react-bootstrap';
 import styles from '@/styles/Featured.module.css';
 
-export default function JobsPage({ jobs }) {
-  return (
-    <Layout title='Jobs Page'>
-      {/* <Hero /> */}
+export default function SearchPage({ jobs }) {
+  const router = useRouter();
 
+  return (
+    <Layout title='Search Results'>
+      <Link href='/jobs'>Go Back</Link>
+      <h2 className='text-center mt-4 fs-4 fw-bold'>
+        Search Results for {router.query.term}
+      </h2>
       {jobs.length === 0 && (
         <h3 className='text-center mt-5 mb-5'>
           There are no jobs available at the moment
@@ -20,12 +26,6 @@ export default function JobsPage({ jobs }) {
       )}
 
       <Container className={styles.featured}>
-        {/* Convert this to component later */}
-        <h2 className='fs-6 fw-bold text-danger text-center'>Featured Jobs</h2>
-        <h3 className='fs-2 fw-bold text-primary text-center text-primary mb-lg-5'>
-          Something special in the job
-        </h3>
-
         <Row className={styles.margin}>
           {jobs.map((job) => (
             <FeaturedJobs key={job.id} job={job} />
@@ -38,8 +38,18 @@ export default function JobsPage({ jobs }) {
   );
 }
 
-export async function getStaticProps() {
-  const res = await fetch(`${API_URL}/jobs`);
+export async function getServerSideProps({ query: { term } }) {
+  const query = qs.stringify({
+    _where: {
+      _or: [
+        { company_contains: term },
+        { role_contains: term },
+        { type_contains: term },
+      ],
+    },
+  });
+
+  const res = await fetch(`${API_URL}/jobs?${query}`);
   const jobs = await res.json();
 
   // console.log(jobs);
