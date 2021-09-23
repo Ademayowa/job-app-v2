@@ -117,7 +117,7 @@ export default function AddJobPage() {
             />
           </div>
 
-          <div className='col-md-6'>
+          {/* <div className='col-md-6'>
             <label htmlFor='location' className='form-label'>
               Testings
             </label>
@@ -129,7 +129,7 @@ export default function AddJobPage() {
               value={values.testings}
               onChange={handleInputChange}
             />
-          </div>
+          </div> */}
 
           <div className='form-floating'>
             <textarea
