@@ -4,11 +4,13 @@ import Search from '@/components/search/Search';
 import FeaturedJobs from '@/components/FeaturedJobs';
 import Hero from 'sections/Hero';
 import Info from 'sections/Info';
-import { API_URL } from '@/config/index';
+import { API_URL, PER_PAGE } from '@/config/index';
 import { Container, Row } from 'react-bootstrap';
-import styles from '@/styles/Featured.module.css';
 
-export default function JobsPage({ jobs }) {
+import styles from '@/styles/Featured.module.css';
+import Pagination from '@/components/Pagination';
+
+export default function JobsPage({ jobs, page, total }) {
   return (
     <Layout title='Jobs Page'>
       {/* <Hero /> */}
@@ -31,6 +33,8 @@ export default function JobsPage({ jobs }) {
             <FeaturedJobs key={job.id} job={job} />
           ))}
         </Row>
+
+        <Pagination page={page} total={total} />
       </Container>
 
       <Info />
@@ -38,13 +42,26 @@ export default function JobsPage({ jobs }) {
   );
 }
 
-export async function getStaticProps() {
-  const res = await fetch(`${API_URL}/jobs`);
-  const jobs = await res.json();
+export async function getServerSideProps({ query: { page = 1 } }) {
+  // console.log(page);
+
+  // Calculate start page for pagination
+  // +page converts d page 2 number
+  const start = +page === 1 ? 0 : (+page - 1) * PER_PAGE;
+
+  // Fecth total number of pages from DB
+  const totalRes = await fetch(`${API_URL}/jobs/count`);
+  const total = await totalRes.json();
+
+  const jobRes = await fetch(
+    `${API_URL}/jobs?_sort=date:ASC&_limit=${PER_PAGE}&_start=${start}`
+  );
+  const jobs = await jobRes.json();
 
   // console.log(jobs);
 
   return {
-    props: { jobs },
+    // total is d number of pages in DB
+    props: { jobs, page: +page, total },
   };
 }
