@@ -1,4 +1,5 @@
 import { Navbar, Container, Nav, Button } from 'react-bootstrap';
+import { FaSignOutAlt, FaSignInAlt } from 'react-icons/fa';
 import styles from '@/styles/Header.module.css';
 import Search from './search';
 
@@ -25,6 +26,12 @@ export default function Header() {
             </Button>
 
             <Nav.Link href='/jobs/add'>Add Job</Nav.Link>
+
+            <Nav.Link href='/account/login'>
+              <a className='btn btn-dark'>
+                <FaSignInAlt /> Login
+              </a>
+            </Nav.Link>
           </Nav>
         </Navbar.Collapse>
       </Container>
