@@ -1,5 +1,5 @@
 import { createContext, useState, useEffect } from 'react';
-import { API_URL } from '@/config/index.js';
+import { NEXT_URL } from '@/config/index';
 import { useRouter } from 'next/router';
 
 const AuthContext = createContext();
@@ -15,7 +15,28 @@ export const AuthProvider = ({ children }) => {
 
   // Login user
   const login = async ({ email: identifier, password }) => {
-    console.log({ email, password });
+    const res = await fetch(`${NEXT_URL}/api/login`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        identifier,
+        password,
+      }),
+    });
+
+    const data = await res.json();
+
+    console.log(data);
+
+    if (res.ok) {
+      setUser(data.user);
+    } else {
+      setError(data.message);
+      // remove error from d state
+      setError(null);
+    }
   };
 
   // Logout user
@@ -29,7 +50,7 @@ export const AuthProvider = ({ children }) => {
   };
 
   return (
-    <AuthContext.Provider value={{ user, error, register, logout }}>
+    <AuthContext.Provider value={{ user, error, register, login, logout }}>
       {children}
     </AuthContext.Provider>
   );
