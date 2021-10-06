@@ -191,9 +191,11 @@ export default function EditJobPage({ jb }) {
   );
 }
 
-export async function getServerSideProps({ params: { id } }) {
+export async function getServerSideProps({ params: { id }, req }) {
   const res = await fetch(`${API_URL}/jobs/${id}`);
   const jb = await res.json();
+
+  console.log(req.headers.cookie);
 
   return {
     props: { jb },
