@@ -14,7 +14,28 @@ export const AuthProvider = ({ children }) => {
 
   // Register user
   const register = async (user) => {
-    console.log(user);
+    // user has: username, email & password (from d body of account/register route)
+    const res = await fetch(`${NEXT_URL}/api/register`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(user),
+    });
+
+    const data = await res.json();
+
+    console.log(data);
+
+    if (res.ok) {
+      setUser(data.user);
+      // if user has token, redirect to dashboard
+      router.push('/account/dashboard');
+    } else {
+      setError(data.message);
+      // remove error from d state
+      setError(null);
+    }
   };
 
   // Login user

@@ -15,11 +15,19 @@ export default function RegisterPage() {
 
   const { register, error } = useContext(AuthContext);
 
+  // display error msg
+  useEffect(() => error && toast.error(error));
+
   const handleSubmit = (e) => {
     e.preventDefault();
 
     if (password !== passwordConfirm) {
       toast.error('Passwords do not match');
+      return;
+    }
+
+    if (username === '') {
+      toast.error('Fill in your username');
       return;
     }
 
@@ -77,7 +85,7 @@ export default function RegisterPage() {
 
           <input
             type='submit'
-            value='Login'
+            value='Register'
             className='btn btn-danger btn-lg'
           />
         </form>
