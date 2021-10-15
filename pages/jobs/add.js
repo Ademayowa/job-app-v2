@@ -1,3 +1,4 @@
+import { parseCookie } from '@/helpers/index';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useState } from 'react';
@@ -7,7 +8,7 @@ import { API_URL } from '@/config/index';
 import Layout from '@/components/Layout';
 import styles from '@/styles/AddPage.module.css';
 
-export default function AddJobPage() {
+export default function AddJobPage({ token }) {
   const [values, setValues] = useState({
     company: '',
     location: '',
@@ -36,12 +37,19 @@ export default function AddJobPage() {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
       },
       body: JSON.stringify(values),
     });
 
     if (!res.ok) {
-      toast.error('Something went wrong');
+      // Checks if user has token
+      if (res.status === 403 || res.status === 401) {
+        toast.error('No token is included');
+        return;
+      }
+
+      toast.error('Something Went Wrong');
     } else {
       const jb = await res.json();
       router.push(`/jobs/${jb.slug}`);
@@ -148,4 +156,14 @@ export default function AddJobPage() {
       </div>
     </Layout>
   );
+}
+
+export async function getServerSideProps({ req }) {
+  const { token } = parseCookie(req);
+
+  return {
+    props: {
+      token,
+    },
+  };
 }
