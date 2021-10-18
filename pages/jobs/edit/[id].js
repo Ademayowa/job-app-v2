@@ -1,3 +1,4 @@
+import { parseCookie } from '@/helpers/index';
 import moment from 'moment';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -12,7 +13,7 @@ import Modal from '@/components/Modal';
 import ImageUpload from '@/components/ImageUpload';
 import styles from '@/styles/AddPage.module.css';
 
-export default function EditJobPage({ jb }) {
+export default function EditJobPage({ jb, token }) {
   const [values, setValues] = useState({
     company: jb.company,
     location: jb.location,
@@ -47,12 +48,18 @@ export default function EditJobPage({ jb }) {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
       },
       body: JSON.stringify(values),
     });
 
     if (!res.ok) {
-      toast.error('Something went wrong');
+      if (res.status === 401 || res.status === 403) {
+        toast.error('Unauthorized');
+        return;
+      }
+
+      toast.error('Something Went wrong');
     } else {
       const jb = await res.json();
       router.push(`/jobs/${jb.slug}`);
@@ -185,19 +192,24 @@ export default function EditJobPage({ jb }) {
       </div>
 
       <Modal show={showModal} onClose={() => setShowModal(false)}>
-        <ImageUpload jbId={jb.id} imageUploaded={imageUploaded} />
+        <ImageUpload jbId={jb.id} imageUploaded={imageUploaded} token={token} />
       </Modal>
     </Layout>
   );
 }
 
 export async function getServerSideProps({ params: { id }, req }) {
+  const { token } = parseCookie(req);
+
   const res = await fetch(`${API_URL}/jobs/${id}`);
   const jb = await res.json();
 
   console.log(req.headers.cookie);
 
   return {
-    props: { jb },
+    props: {
+      jb,
+      token,
+    },
   };
 }

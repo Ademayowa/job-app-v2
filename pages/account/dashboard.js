@@ -1,18 +1,32 @@
 import { parseCookie } from '@/helpers/index';
+import { useRouter } from 'next/router';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import Layout from '@/components/Layout';
 import { API_URL } from '@/config/index';
 import styles from '@/styles/Dashboard.module.css';
 import DashboardJob from '@/components/DashboardJob';
 
-export default function DashboardPage({ jobs }) {
-  // console.log(jobs);
+export default function DashboardPage({ jobs, token }) {
+  const router = useRouter();
 
-  // const deleteJob = (id) => {
-  //   console.log(id);
-  // };
+  const deleteJob = async (id) => {
+    if (confirm('Are you sure you want to delete')) {
+      const res = await fetch(`${API_URL}/jobs/${id}`, {
+        method: 'DELETE',
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
 
-  const deleteJob = (id) => {
-    console.log(id);
+      const data = await res.json();
+
+      if (!res.ok) {
+        toast.error(data.message);
+      } else {
+        router.push(`/jobs`);
+      }
+    }
   };
 
   return (
@@ -46,6 +60,7 @@ export async function getServerSideProps({ req }) {
   return {
     props: {
       jobs,
+      token,
     },
   };
 }

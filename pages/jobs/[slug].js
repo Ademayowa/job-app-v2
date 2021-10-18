@@ -14,26 +14,10 @@ export default function JobPage({ jb }) {
 
   const { location, company, image, description, testings } = jb;
 
-  const deleteJob = async (e) => {
-    if (confirm('Are you sure you want to delete')) {
-      const res = await fetch(`${API_URL}/jobs/${jb.id}`, {
-        method: 'DELETE',
-      });
-
-      const data = await res.json();
-
-      if (!res.ok) {
-        toast.error(data.message);
-      } else {
-        router.push(`/jobs`);
-      }
-    }
-  };
-
   return (
     <Layout>
       <div className='p-4 mx-5'>
-        <div className='controls'>
+        {/* <div className='controls'>
           <Link href={`/jobs/edit/${jb.id}`}>
             <a className='me-3'>
               <FaPencilAlt /> Edit Job
@@ -43,7 +27,7 @@ export default function JobPage({ jb }) {
           <a href='#' onClick={deleteJob}>
             <FaTimes /> Delete Job
           </a>
-        </div>
+        </div> */}
 
         <div className='wrapper bg-white d-flex mt-4 p-5 shadow-sm border'>
           {jb.image && (
