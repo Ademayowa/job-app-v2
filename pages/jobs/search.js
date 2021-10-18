@@ -3,7 +3,7 @@ import Link from 'next/link';
 import qs from 'qs';
 import Job from '@/components/Job';
 import Layout from '@/components/Layout';
-import Search from '@/components/search/Search';
+// import Search from '@/components/search/Search';
 import FeaturedJobs from '@/components/FeaturedJobs';
 import Info from 'sections/Info';
 import { API_URL } from '@/config/index';
