@@ -3,7 +3,7 @@ import { useContext } from 'react';
 import AuthContext from '@/context/AuthContext';
 import { FaSignOutAlt, FaSignInAlt } from 'react-icons/fa';
 import styles from '@/styles/Header.module.css';
-import Search from './search';
+import Search from '@/components/Search';
 
 export default function Header() {
   const { user, logout } = useContext(AuthContext);
