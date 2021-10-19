@@ -1,6 +1,6 @@
 import Job from '@/components/Job';
 import Layout from '@/components/Layout';
-import Search from '@/components/search/Search';
+// import Search from '@/components/search/Search';
 import FeaturedJobs from '@/components/FeaturedJobs';
 import Hero from 'sections/Hero';
 import Info from 'sections/Info';
