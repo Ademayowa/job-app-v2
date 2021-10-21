@@ -34,6 +34,7 @@ export default function JobPage({ jb }) {
             <div className='logo'>
               <Image
                 src={image.url}
+                alt='company-logo'
                 width={40}
                 height={40}
                 objectFit={'contain'}
