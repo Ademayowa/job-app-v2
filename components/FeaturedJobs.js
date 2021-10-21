@@ -10,7 +10,13 @@ export default function FeaturedJobs({ job }) {
     <Col lg={4}>
       <Card className='py-2 px-2 mt-5 mb-lg-5'>
         <div className={styles.image}>
-          <Image src={image.url} width={50} height={50} objectFit={'contain'} />
+          <Image
+            src={image.url}
+            width={50}
+            height={50}
+            objectFit={'contain'}
+            alt='company-logo'
+          />
         </div>
 
         <Card.Body>
